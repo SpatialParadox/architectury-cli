@@ -13,3 +13,10 @@ serde = { version = "1.0.140", features = ["derive"] }
 serde_json = "1.0.82"
 tempfile = "3.3.0"
 zip = "0.6.2"
+
+[profile.release]
+# From https://github.com/johnthagen/min-sized-rust
+lto = true
+opt-level = "z"
+codegen-units = 1
+strip = "debuginfo"
