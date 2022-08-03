@@ -36,7 +36,7 @@ impl ListSubcommand {
                 .collect::<Vec<String>>();
 
             if matches.is_empty() {
-                Err(eyre!("no matching templates found", query))
+                Err(eyre!("no matching templates found"))
             } else {
                 Ok(matches)
             }
