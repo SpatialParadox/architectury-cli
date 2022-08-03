@@ -1,5 +1,9 @@
 [package]
 name = "architectury-cli"
+description = "Command-line tool for creating Architectury projects"
+authors = ["SpatialParadox <notparadox04@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/SpatialParadox/architectury-cli"
 version = "1.0.0"
 edition = "2021"
 
