@@ -40,7 +40,9 @@ jobs:
         with:
           fetch-depth: 1
       - name: Generate Release Notes
+        shell: bash
         run: |
+          chmod +x ./.github/workflows/release-notes.py
           ./.github/workflows/release-notes.py --tag ${{ env.RELEASE_VERSION }} --output notes-${{ env.RELEASE_VERSION }}.md
           cat notes-${{ env.RELEASE_VERSION }}.md
       - name: Create GitHub release
