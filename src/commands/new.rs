@@ -99,13 +99,13 @@ impl NewSubcommand {
         // Create project directory and extract all archive files into it
         let mut archive = ZipArchive::new(asset_file)?;
         for i in 0..archive.len() {
-            let mut file = archive.by_index(i)?;
-            let file_path = match file.enclosed_name() {
+            let mut archive_file = archive.by_index(i)?;
+            let file_path = match archive_file.enclosed_name() {
                 Some(path) => self.directory.join(path),
                 None => continue,
             };
 
-            if file.name().ends_with('/') {
+            if archive_file.name().ends_with('/') {
                 fs::create_dir_all(file_path)?;
             } else if let Some(p) = file_path.parent() {
                 if !p.exists() {
@@ -113,7 +113,7 @@ impl NewSubcommand {
                 }
 
                 let mut new_file = File::create(file_path)?;
-                io::copy(&mut file, &mut new_file)?;
+                io::copy(&mut archive_file, &mut new_file)?;
             }
 
             // set permissions for unix systems
@@ -121,8 +121,8 @@ impl NewSubcommand {
             {
                 use std::os::unix::fs::PermissionsExt;
 
-                if let Some(mode) = asset_file.unix_mode() {
-                    fs::set_permissions(&outpath, fs::Permissions::from_mode(mode)).unwrap();
+                if let Some(mode) = archive_file.unix_mode() {
+                    fs::set_permissions(&file_path, fs::Permissions::from_mode(mode))?;
                 }
             }
         }
