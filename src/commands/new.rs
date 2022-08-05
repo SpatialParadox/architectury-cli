@@ -106,13 +106,13 @@ impl NewSubcommand {
             };
 
             if archive_file.name().ends_with('/') {
-                fs::create_dir_all(file_path)?;
+                fs::create_dir_all(&file_path)?;
             } else if let Some(p) = file_path.parent() {
                 if !p.exists() {
                     fs::create_dir_all(p)?;
                 }
 
-                let mut new_file = File::create(file_path)?;
+                let mut new_file = File::create(&file_path)?;
                 io::copy(&mut archive_file, &mut new_file)?;
             }
 
