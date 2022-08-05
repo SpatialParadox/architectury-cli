@@ -20,19 +20,18 @@ on:
       - "v*"
 env:
   BIN_NAME: architectury-cli
-  RELEASE_VERSION: ${GITHUB_REF_NAME}
 jobs:
   create-release:
     name: create-release
     runs-on: ubuntu-latest
     outputs:
       upload_url: ${{ steps.release.outputs.upload_url }}
-      release_version: ${{ env.RELEASE_VERSION }}
+      release_version: ${GITHUB_REF_NAME}
     steps:
       - name: Get the release version from the tag
         shell: bash
         run: |
-          echo "version is: ${{ env.RELEASE_VERSION }}"
+          echo "version is: ${GITHUB_REF_NAME}"
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -41,7 +40,7 @@ jobs:
         shell: bash
         run: |
           chmod +x ./.github/workflows/release-notes.py
-          ./.github/workflows/release-notes.py --tag ${{ env.RELEASE_VERSION }} --output notes-${{ env.RELEASE_VERSION }}.md
+          ./.github/workflows/release-notes.py --tag ${GITHUB_REF_NAME} --output notes-${GITHUB_REF_NAME}.md
           cat notes-${{ env.RELEASE_VERSION }}.md
       - name: Create GitHub release
         id: release
@@ -49,9 +48,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: ${{ env.RELEASE_VERSION }}
-          body_path: notes-${{ env.RELEASE_VERSION }}.md
+          tag_name: ${GITHUB_REF_NAME}
+          release_name: ${GITHUB_REF_NAME}
+          body_path: notes-${GITHUB_REF_NAME}.md
   build-release:
     name: build-release
     needs: create-release
