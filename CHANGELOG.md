@@ -7,9 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
-## [0.1.1] - 2022-08-05
 - Initial release
 
 <!-- next-url -->
-[Unreleased]: https://github.com/assert-rs/predicates-rs/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/SpatialParadox/architectury-cli/compare/925d1f3f...v0.1.1
+[Unreleased]: https://github.com/SpatialParadox/architectury-cli/compare/925d1f3f...HEAD
