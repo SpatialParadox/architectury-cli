@@ -2,7 +2,6 @@
 
 import argparse
 import pathlib
-import re
 import sys
 
 _STDIO = pathlib.Path("-")
