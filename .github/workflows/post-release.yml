@@ -41,7 +41,7 @@ jobs:
         run: |
           chmod +x ./.github/workflows/release-notes.py
           ./.github/workflows/release-notes.py --tag ${GITHUB_REF_NAME} --output notes-${GITHUB_REF_NAME}.md
-          cat notes-${{ env.RELEASE_VERSION }}.md
+          cat notes-${$GITHUB_REF_NAME}.md
       - name: Create GitHub release
         id: release
         uses: actions/create-release@v1
