@@ -1,5 +1,5 @@
 [package]
-name = "architectury-cli"
+name = "architectury"
 description = "Command-line tool for creating Architectury projects"
 authors = ["SpatialParadox <notparadox04@gmail.com>"]
 license = "MIT"
@@ -20,7 +20,7 @@ tempfile = "3.3.0"
 zip = "0.6.2"
 
 [profile.release]
-# From https://github.com/johnthagen/min-sized-rust
+# See https://github.com/johnthagen/min-sized-rust
 lto = true
 opt-level = "z"
 codegen-units = 1

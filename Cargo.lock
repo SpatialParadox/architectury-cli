@@ -30,7 +30,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "architectury-cli"
+name = "architectury"
 version = "0.1.0"
 dependencies = [
  "clap",
