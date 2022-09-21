@@ -2,6 +2,7 @@ use std::io::{stdout, Write};
 
 use clap::Args;
 use color_eyre::{eyre::eyre, Result};
+use owo_colors::OwoColorize;
 
 use crate::web::WebClient;
 
@@ -52,13 +53,13 @@ impl ListSubcommand {
 
             versions.sort();
 
-            print!("{}: ", template);
+            print!("{}: ", template.cyan());
             stdout().flush()?;
 
             println!(
                 "{}{}",
                 " ".repeat(max_len - (template.len() + 2)),
-                versions.join(", ")
+                versions.join(", ").green()
             );
         }
 

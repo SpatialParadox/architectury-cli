@@ -7,6 +7,7 @@ use std::{
 use clap::Args;
 use color_eyre::{
     eyre::{eyre, Context},
+    owo_colors::OwoColorize,
     Result,
 };
 use zip::ZipArchive;
@@ -58,7 +59,7 @@ impl NewSubcommand {
         }
 
         if self.directory.exists() {
-            return Err(eyre!("{:?} already exists", self.directory));
+            return Err(eyre!("{:?} directory already exists", self.directory));
         }
 
         let client = WebClient::new();
@@ -93,7 +94,8 @@ impl NewSubcommand {
 
         println!(
             "Successfully downloaded {} {} template, extracting...",
-            self.version, template_name
+            self.version.green(),
+            template_name.cyan(),
         );
 
         // Create project directory and extract all archive files into it
@@ -127,7 +129,7 @@ impl NewSubcommand {
             }
         }
 
-        println!("Project created at {:?}", self.directory);
+        println!("Project created at {:?}", self.directory.green());
 
         Ok(())
     }
