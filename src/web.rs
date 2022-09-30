@@ -128,7 +128,7 @@ impl WebClient {
 
         let mut dest = tempfile()?;
         let content = download_response.bytes()?;
-        dest.write_all(&content.to_vec())?;
+        dest.write_all(&content)?;
         Ok(dest)
     }
 
